@@ -1,5 +1,6 @@
 import random
 
+
 def build_new_character(ctx):
     if ctx == "first_build":
         print("Welcome. What are you?")
@@ -12,6 +13,7 @@ def build_new_character(ctx):
         random_index = random.randint(0, 3)
         random_species = options[random_index]
         print("Welcome back to the world, " + random_species + ". Good luck.")
+
 
 def gather_species_input():
     species = input(
@@ -29,6 +31,7 @@ def gather_species_input():
         render_species_information(species)
         return gather_species_input()
 
+
 def render_species_information(species_name):
     standardized_species_name = species_name.lower()
     if standardized_species_name == "human":
@@ -42,7 +45,44 @@ def render_species_information(species_name):
     else:
         print("I applaud your creativity, but please choose an actual species: ")
 
-def generate_user_information():
-    return 'aye aye'
+
+def generate_user_information(ctx):
+    reason_for_creation = ctx['reason_for_creation']
+    if reason_for_creation == 'new_character':
+        # here's the skills we're starting with
+        # ctx can alter these with minute buffs
+        skills = {
+            "athletics": 0,
+            "spacefaring": 0,
+            "accuracy": 0,
+            "gunslinger": 0,
+            "planetary_survival": 0,
+            "strength": 0,
+            "human": 0,
+            "apsonid": 0,
+            "sojourner": 0,
+            "ethereal": 0
+        }
+        species = ctx['species']
+        if species == 'apsonid':
+            skills['strength'] += 100
+            skills['apsonid'] += 100000000
+            skills['athletics'] += 100
+        elif species == 'human':
+            skills['planetary_survival'] += 100
+            skills['human'] += 100000000
+            skills['sojourner'] += 10000
+            skills['gunslinger'] += 100
+        elif species == 'ethereal':
+            skills['accuracy'] += 100
+            skills['ethereal'] += 10000000
+            skills['spacefaring'] += 100
+        else:
+            skills['spacefaring'] += 200
+            skills['sojourner'] += 100000000
+        ctx['character']['skills'] = skills
+    else:
+        ctx['character']['species'] = ctx['species']
+
 
 build_new_character("random_mode")
