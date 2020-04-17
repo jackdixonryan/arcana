@@ -1,5 +1,3 @@
-import item
-
 class Character:
     def __init__(self,
                  name: str,
