@@ -49,6 +49,5 @@ shady_dock_worker = npc.NPC(name,
                             attitude,
                             npc_interactions)
 
-shady_dock_worker.interact('greet')
 
 
