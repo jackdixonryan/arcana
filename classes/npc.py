@@ -1,5 +1,3 @@
-import random
-
 
 class NPC:
     def __init__(self,
@@ -20,18 +18,20 @@ class NPC:
         self.interaction = interaction
         self.attitude = attitude
 
+    def list_interactions(self):
+        return self.interaction.keys()
+
     def interact(self, option):
         selected_interaction = self.interaction[option]
         if not selected_interaction:
             print("That\'s not really an option...")
         else:
-            selected_interaction.get_response(self.attitude)
+            selected_interaction.get_response(self.attitude, self.name)
             for effect in selected_interaction.effects:
                 for affected_attribute, change in effect.items():
                     current_value = getattr(self, affected_attribute)
                     new_value = current_value + change
                     setattr(self, affected_attribute, new_value)
-        print("attitude:", self.attitude)
 
     def check_inventory(self):
         print("You look ", self.name, "over...")

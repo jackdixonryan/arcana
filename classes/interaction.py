@@ -1,3 +1,4 @@
+from layout.generate_base_text_display import generate_dialog_box
 
 
 class Interaction:
@@ -10,21 +11,20 @@ class Interaction:
         self.effects = effects
 
     # takes parent attitude into account before giving a response
-    def get_response(self, npc_attitude):
-        print("running response getter...")
+    def get_response(self, npc_attitude, npc_name):
         if npc_attitude >= 0:
-            print('npc attitude is positive')
             current_response = self.responses[0]
             for response in self.responses:
                 if current_response['attitude_threshold'] < response['attitude_threshold'] < npc_attitude:
                     current_response = response
-            print(current_response['text'])
-            return(current_response['text'])
+            dialog = generate_dialog_box(npc_name, current_response['text'])
+            print(dialog)
+            return dialog
         elif npc_attitude < 0:
-            print('npc attitude is not positive')
             current_response = self.responses[0]
             for response in self.responses:
                 if current_response['attitude_threshold'] > response['attitude_threshold'] > npc_attitude:
                     current_response = response
-            print(current_response['text'])
-            return current_response['text']
+            dialog = generate_dialog_box(npc_name, current_response['text'])
+            print(dialog)
+            return dialog

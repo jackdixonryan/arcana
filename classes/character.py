@@ -1,3 +1,5 @@
+
+
 class Character:
     def __init__(self,
                  name: str,
@@ -120,55 +122,9 @@ class Character:
         return total_calculated_damage
 
 
-# character = Character('Anaxio',
-#                       {
-#                           'gunslinger': 0,
-#                           'athletics': 0,
-#                           'spacefaring': 0,
-#                           'accuracy': 0,
-#                           'planetary_survival': 0,
-#                           'strength': 0,
-#                           'linguistics': 0
-#                       },
-#                       [],
-#                       {
-#                           'body': None,
-#                           'head': None,
-#                           'hands': None,
-#                           'legs': None,
-#                           'feet': None,
-#                           'weapon': None,
-#                       },
-#                       {'health': 100,
-#                        'strength': 100,
-#                        'energy': 100
-#                        })
-# character.say_name()
-# character.show_skill_xp_quantities()
-# character.gain_xp('gunslinger', 20)
-# character.show_skill_xp_quantities()
-# character.show_vitals()
-
-# crew_shirt = item.Item('crew shirt',
-#                        'the shirt of a recently deceased crew member',
-#                        'clothing',
-#                        False,
-#                        True,
-#                        False,
-#                        None,
-#                        10,
-#                        None,
-#                        "body")
-
-# rusty_crowbar = item.Item('rusty crowbar', 'I guess this could hurt someone...', 'weapon', True, False, False, 2.5, None, None, 'weapon')
-#
-# character.add_item_to_inventory(crew_shirt)
-# character.add_item_to_inventory(rusty_crowbar)
-# character.inventory_readout()
-# character.equip_item('crew shirt')
-# character.equip_item('rusty crowbar')
-# character.inventory_readout()
-# character.show_equipment()
-# print(character.protection())
-# print(character.damage())
-
+def create(name: str,
+           skills: dict,
+           inventory: list,
+           worn_equipment: dict,
+           vitals: dict):
+    return Character(name, skills, inventory, worn_equipment, vitals)
